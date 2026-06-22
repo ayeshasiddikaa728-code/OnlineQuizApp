@@ -51,6 +51,6 @@ public class QuizTest {
 
         assertNotNull(allQuestions);
         assertEquals(1, allQuestions.size());
-        assertEquals("Java is fun?", allQuestions.get(0).getQuestionText());
+        assertEquals("Java is fun?", allQuestions.getFirst().getQuestionText());
     }
 }
