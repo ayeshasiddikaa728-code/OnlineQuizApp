@@ -4,21 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Quiz {
-    private final List<Question> questions;
 
-    public Quiz() {
-        this.questions = new ArrayList<>();
+    private static Quiz instance;
+    private List<Question> questions;
+
+
+    private Quiz() {
+        questions = new ArrayList<>();
     }
 
-    public void addQuestion(Question question) {
-        this.questions.add(question);
+
+    public static Quiz getInstance() {
+        if (instance == null) {
+            instance = new Quiz();
+        }
+        return instance;
+    }
+
+    public void addQuestion(Question q) {
+        questions.add(q);
     }
 
     public int getQuestionCount() {
-        return this.questions.size();
+        return questions.size();
     }
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+
+    public void resetQuiz() {
+        questions.clear();
     }
 }

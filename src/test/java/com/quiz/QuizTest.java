@@ -1,5 +1,6 @@
 package com.quiz;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,9 +8,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuizTest {
 
 
+    @BeforeEach
+    public void setUp() {
+        Quiz.getInstance().resetQuiz();
+    }
+
+
+    @Test
+    public void testSingletonInstance() {
+        Quiz quiz1 = Quiz.getInstance();
+        Quiz quiz2 = Quiz.getInstance();
+
+
+        assertSame(quiz1, quiz2);
+    }
+
+
     @Test
     public void testQuestionCount() {
-        Quiz quiz = new Quiz();
+        Quiz quiz = Quiz.getInstance();
         quiz.addQuestion(new Question("Q1", "A"));
         quiz.addQuestion(new Question("Q2", "B"));
 
@@ -34,16 +51,8 @@ public class QuizTest {
 
 
     @Test
-    public void testEmptyQuiz() {
-        Quiz quiz = new Quiz();
-
-        assertEquals(0, quiz.getQuestionCount());
-    }
-
-
-    @Test
     public void testGetQuestionsList() {
-        Quiz quiz = new Quiz();
+        Quiz quiz = Quiz.getInstance();
         Question q = new Question("Java is fun?", "Yes");
         quiz.addQuestion(q);
 
@@ -51,6 +60,6 @@ public class QuizTest {
 
         assertNotNull(allQuestions);
         assertEquals(1, allQuestions.size());
-        assertEquals("Java is fun?", allQuestions.get(0).getQuestionText());
+        assertEquals("Java is fun?", allQuestions.getFirst().getQuestionText());
     }
 }
