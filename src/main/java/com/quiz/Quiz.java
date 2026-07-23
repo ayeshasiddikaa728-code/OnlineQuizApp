@@ -8,7 +8,6 @@ public class Quiz {
     private static Quiz instance;
     private List<Question> questions;
 
-
     public Quiz() {
         questions = new ArrayList<>();
     }
