@@ -15,7 +15,6 @@ public class Quiz {
 
     public static Quiz getInstance() {
         if (instance == null) {
-            instance = new Quiz();
         }
         return instance;
     }
