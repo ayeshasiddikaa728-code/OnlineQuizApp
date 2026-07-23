@@ -9,7 +9,7 @@ public class Quiz {
     private List<Question> questions;
 
 
-    private Quiz() {
+    public Quiz() {
         questions = new ArrayList<>();
     }
 
@@ -36,5 +36,14 @@ public class Quiz {
 
     public void resetQuiz() {
         questions.clear();
+    }
+    public int calculateScore(List<String> userAnswers) {
+        int score = 0;
+        for (int i = 0; i < questions.size() && i < userAnswers.size(); i++) {
+            if (questions.get(i).getCorrectAnswer().equalsIgnoreCase(userAnswers.get(i))) {
+                score++;
+            }
+        }
+        return score;
     }
 }
