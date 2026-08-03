@@ -8,15 +8,13 @@ public class Quiz {
     private static Quiz instance;
     private List<Question> questions;
 
-
-    private Quiz() {
+    public Quiz() {
         questions = new ArrayList<>();
     }
 
 
     public static Quiz getInstance() {
         if (instance == null) {
-            instance = new Quiz();
         }
         return instance;
     }
@@ -36,5 +34,14 @@ public class Quiz {
 
     public void resetQuiz() {
         questions.clear();
+    }
+    public int calculateScore(List<String> userAnswers) {
+        int score = 0;
+        for (int i = 0; i < questions.size() && i < userAnswers.size(); i++) {
+            if (questions.get(i).getCorrectAnswer().equalsIgnoreCase(userAnswers.get(i))) {
+                score++;
+            }
+        }
+        return score;
     }
 }

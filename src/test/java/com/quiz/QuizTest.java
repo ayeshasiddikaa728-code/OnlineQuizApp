@@ -62,4 +62,17 @@ public class QuizTest {
         assertEquals(1, allQuestions.size());
         assertEquals("Java is fun?", allQuestions.getFirst().getQuestionText());
     }
+    @Test
+    public void testCalculateScore() {
+        Quiz quiz = Quiz.getInstance();
+        quiz.resetQuiz();
+
+        quiz.addQuestion(new Question("Java is OOP?", "Yes"));
+        quiz.addQuestion(new Question("2+2?", "4"));
+
+        List<String> userAnswers = List.of("Yes", "4");
+        int finalScore = quiz.calculateScore(userAnswers);
+
+        assertEquals(2, finalScore);
+    }
 }
